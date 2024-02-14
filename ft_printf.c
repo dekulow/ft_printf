@@ -6,7 +6,7 @@
 /*   By: dekulow <dekulow@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:04:30 by dekulow           #+#    #+#             */
-/*   Updated: 2024/01/22 12:37:25 by dekulow          ###   ########.fr       */
+/*   Updated: 2024/02/14 17:44:57 by dekulow          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	ft_printf(const char *format, ...)
 
 	va_start(args, format);
 	len = 0;
+	if (!format)
+		return (-1);
 	while (*format)
 	{
 		if (*format == '%')
@@ -58,6 +60,12 @@ static t_ui	ft_print_format(const char *format, va_list args)
 		return (ft_print_int(va_arg(args, int)));
 	else if (*format == 'u')
 		return (ft_print_uint(va_arg(args, t_ui)));
+		else
+	{
+		ft_printf("%%");
+		ft_printf("%c", *format);
+		return (2);
+	}
 	return (0);
 }
 
